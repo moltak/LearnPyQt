@@ -24,6 +24,7 @@ class Example(QtGui.QMainWindow):
     def mousePressEvent(self, e):
         self.c.closeApp.emit()
 
+
 def main():
     app = QtGui.QApplication(sys.argv)
     e = Example()

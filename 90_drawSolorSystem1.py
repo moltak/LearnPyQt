@@ -18,7 +18,7 @@ class SolarWindow(QtGui.QWidget):
 
     def fullScreen(self):
         fg = self.frameGeometry()
-        rect = QtGui.QDesktopWidget().availableGeometry()
+        self.rect = rect = QtGui.QDesktopWidget().availableGeometry()
         center = rect.center()
         fg.moveCenter(center)
         self.move(fg.topLeft())
@@ -31,8 +31,12 @@ class SolarWindow(QtGui.QWidget):
         self.qp.end()
 
     def drawSun(self):
+        self.pen.setColor(QtCore.Qt.red)
         self.qp.setPen(self.pen)
-        self.qp.drawEllipse(50, 50, 50, 50)
+        center = self.rect.center()
+        width = 50
+        height = 50
+        self.qp.drawEllipse(center.x() - width/2, center.y() - height/2, width, height)
 
     def drawMercury(self):
         self.qp.setPen(self.pen)

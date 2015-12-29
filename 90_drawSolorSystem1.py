@@ -9,7 +9,7 @@ from PyQt4.QtCore import *
 class SolarWindow(QWidget):
     def __init__(self):
         super(SolarWindow, self).__init__()
-        self.pen = QPen(Qt.SolidLine)
+        self.pen = QPen(Qt.DashDotLine)
         self.qp = QPainter(self)
         self.initUi()
 
@@ -35,9 +35,12 @@ class SolarWindow(QWidget):
     def drawSun(self):
         b = QImage("./solorSystemPlanet/sun.png")
         center = self.rect.center()
-        self.qp.drawImage(center.x() - b.width() / 2, center.y() - b.height() / 2, b)
+        size = 40
+        br = QRect(center.x() - size / 2, center.y() - size / 2, size, size)
+        self.qp.drawImage(br, b)
 
     def drawMercury(self):
+        self.pen.setColor(QColor.fromRgb(0xffb976))
         self.qp.setPen(self.pen)
         center = self.rect.center()
         self.qp.drawEllipse(center.x() - 100, center.y() - 100, 200, 200)

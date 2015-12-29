@@ -7,6 +7,8 @@ from PyQt4 import QtGui, QtCore
 class SolarWindow(QtGui.QWidget):
     def __init__(self):
         super(SolarWindow, self).__init__()
+        self.pen = QtGui.QPen(QtCore.Qt.SolidLine)
+        self.qp = QtGui.QPainter(self)
         self.initUi()
 
     def initUi(self):
@@ -23,21 +25,18 @@ class SolarWindow(QtGui.QWidget):
         self.resize(rect.width(), rect.height())
 
     def paintEvent(self, e):
-        qp = QtGui.QPainter(self)
-        qp.begin(self)
-        brush = QtGui.QBrush()
-        self.drawSun(qp, brush)
-        qp.end()
+        self.qp.begin(self)
+        self.drawSun()
+        self.drawMercury()
+        self.qp.end()
 
-    def drawSun(self, qp, brush):
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        qp.setBrush(brush)
-        qp.drawArc(240, 250, 100, 100, 0, 0)
+    def drawSun(self):
+        self.qp.setPen(self.pen)
+        self.qp.drawEllipse(50, 50, 50, 50)
 
-    def drawMercury(self, qp, brush):
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        qp.setBrush(brush)
-        qp.drawArc(500, 500, 100, 100, 0, 0)
+    def drawMercury(self):
+        self.qp.setPen(self.pen)
+        self.qp.drawEllipse(100, 100, 50, 50)
 
 # mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 

@@ -2,13 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import *
+from PyQt4.QtCore import *
 
-class SolarWindow(QtGui.QWidget):
+
+class SolarWindow(QWidget):
     def __init__(self):
         super(SolarWindow, self).__init__()
-        self.pen = QtGui.QPen(QtCore.Qt.SolidLine)
-        self.qp = QtGui.QPainter(self)
+        self.pen = QPen(Qt.SolidLine)
+        self.qp = QPainter(self)
         self.initUi()
 
     def initUi(self):
@@ -18,7 +20,7 @@ class SolarWindow(QtGui.QWidget):
 
     def fullScreen(self):
         fg = self.frameGeometry()
-        self.rect = rect = QtGui.QDesktopWidget().availableGeometry()
+        self.rect = rect = QDesktopWidget().availableGeometry()
         center = rect.center()
         fg.moveCenter(center)
         self.move(fg.topLeft())
@@ -31,23 +33,23 @@ class SolarWindow(QtGui.QWidget):
         self.qp.end()
 
     def drawSun(self):
-        self.pen.setColor(QtCore.Qt.red)
-        self.qp.setPen(self.pen)
+        b = QImage("./solorSystemPlanet/sun.png")
         center = self.rect.center()
-        width = 50
-        height = 50
-        self.qp.drawEllipse(center.x() - width/2, center.y() - height/2, width, height)
+        self.qp.drawImage(center.x() - b.width() / 2, center.y() - b.height() / 2, b)
 
     def drawMercury(self):
         self.qp.setPen(self.pen)
-        self.qp.drawEllipse(100, 100, 50, 50)
+        center = self.rect.center()
+        self.qp.drawEllipse(center.x() - 100, center.y() - 100, 200, 200)
+
 
 # mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     w = SolarWindow()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()

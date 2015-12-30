@@ -1,10 +1,19 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+key doc -  Kepler's laws of planetary motion
+https://ko.wikipedia.org/wiki/%EC%BC%80%ED%94%8C%EB%9F%AC%EC%9D%98_%ED%96%89%EC%84%B1%EC%9A%B4%EB%8F%99%EB%B2%95%EC%B9%99
+
+key doc2 - pyqt4
+http://zetcode.com/gui/pyqt4/
+"""
+
 import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
+import Astropy
 
 class SolarWindow(QWidget):
     def __init__(self):

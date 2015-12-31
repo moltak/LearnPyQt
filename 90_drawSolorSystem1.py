@@ -13,7 +13,7 @@ import sys
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-import Astropy
+import astropy
 
 class SolarWindow(QWidget):
     def __init__(self):
@@ -36,6 +36,7 @@ class SolarWindow(QWidget):
         self.resize(rect.width(), rect.height())
 
     def paintEvent(self, e):
+        print('paintEvent')
         self.qp.begin(self)
         self.drawSun()
         self.drawMercury()
@@ -52,6 +53,9 @@ class SolarWindow(QWidget):
         self.pen.setColor(QColor.fromRgb(0xffb976))
         self.qp.setPen(self.pen)
         center = self.rect.center()
+        # 중심점 찾기.(초점 이해하기)
+        # 이심율 구하기 - width, height 만들기
+        # drawEllipse 하기.
         self.qp.drawEllipse(center.x() - 100, center.y() - 100, 200, 200)
 
 

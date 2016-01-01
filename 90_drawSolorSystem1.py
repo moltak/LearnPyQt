@@ -7,9 +7,16 @@ https://ko.wikipedia.org/wiki/%EC%BC%80%ED%94%8C%EB%9F%AC%EC%9D%98_%ED%96%89%EC%
 
 key doc2 - pyqt4
 http://zetcode.com/gui/pyqt4/
+
+How to compute planetary positions
+http://www.stjarnhimlen.se/comp/ppcomp.html
+
+Computing planetary positions - a tutorial with worked examples
+http://www.stjarnhimlen.se/comp/tutorial.html
 """
 
 import sys
+import datetime
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -21,6 +28,10 @@ class SolarWindow(QWidget):
         self.pen = QPen(Qt.DashDotLine)
         self.qp = QPainter(self)
         self.initUi()
+
+        timeScale = TimeScale()
+        self.sun = Sun(timeScale.d)
+        self.mercury = Mercury(timeScale.d)
 
     def initUi(self):
         self.setWindowTitle('Solar System')
@@ -58,6 +69,28 @@ class SolarWindow(QWidget):
         # drawEllipse 하기.
         self.qp.drawEllipse(center.x() - 100, center.y() - 100, 200, 200)
 
+class TimeScale():
+    def __init__(self):
+        t = datetime.datetime.now()
+        self.d = 367 * t.year - 7 * (t.year + (t.month + 9) / 12) / 4 + 275 * t.month / 9 + t.day - 730530
+
+class Sun():
+    def __init__(self, d):
+        self.N = 0.0
+        self.i = 0.0
+        self.w = 282.9404 + 4.70935E-5 * d
+        self.a = 1.000000
+        self.e = 0.016709 - 1.151E-9 * d
+        self.M = 356.0470 + 0.9856002585 * d
+
+class Mercury():
+    def __init__(self, d):
+        self.N = 48.3313 + 3.24587E-5 * d
+        self.i = 7.0047 + 5.00E-8 * d
+        self.w = 29.1241 + 1.01444E-5 * d
+        self.a = 0.387098
+        self.e = 0.205635 + 5.59E-10 * d
+        self.M = 168.6562 + 4.0923344368 * d
 
 # mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 

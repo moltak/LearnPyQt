@@ -13,6 +13,23 @@ http://www.stjarnhimlen.se/comp/ppcomp.html
 
 Computing planetary positions - a tutorial with worked examples
 http://www.stjarnhimlen.se/comp/tutorial.html
+
+
+단어 너무 어렵다.. 코딩을 하고 싶지만. 알고리즘을 이해하려면 오래 걸리겠지. 한걸음씩 나아가자. 조급해서 지치지 말고 나아가자
+
+raction - 분수, 두 수의 비
+equinox - 주야 평균시
+nutation - 지축의 진동
+aberration - 탈선
+Precession - 세차운동
+ecliptic - 황도면
+perturbations - 당황 (????)
+UT - Universal Time
+longitude - 경도
+perihelion - 근일점
+aphelion - 원일점
+perigee - 인공위성의 근일점
+apogee - 인공위성의 원일점
 """
 
 import sys
